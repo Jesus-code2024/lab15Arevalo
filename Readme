@@ -1,0 +1,215 @@
+# Guía de Despliegue en Vercel
+
+## ✅ Tareas Completadas
+
+### 1. Página de Contacto
+- ✅ Creada en `/contact`
+- ✅ Formulario con campos: nombre, email, asunto, mensaje
+- ✅ Metadata SEO configurada
+- ✅ Enlaces a redes sociales (GitHub, LinkedIn, Email)
+- ✅ Diseño responsive con Tailwind CSS
+
+### 2. Sitemap Actualizado
+- ✅ Archivo `sitemap.tsx` incluye ruta `/contact`
+- ✅ Accesible en: http://localhost:3000/sitemap.xml
+- ✅ Todas las páginas están indexadas con prioridades correctas
+
+### 3. Robots.txt Actualizado
+- ✅ Ya estaba configurado correctamente
+- ✅ Accesible en: http://localhost:3000/robots.txt
+- ✅ Referencia al sitemap incluida
+
+### 4. Header Actualizado
+- ✅ Link "Contacto" agregado a la navegación
+
+---
+
+## 🚀 Pasos para Desplegar en Vercel
+
+### Paso 1: Verificar Build Local
+```powershell
+# Detén el servidor de desarrollo (Ctrl+C)
+
+# Construye la aplicación
+npm run build
+
+# Prueba la versión de producción
+npm start
+```
+
+Si el build es exitoso, continúa al siguiente paso.
+
+---
+
+### Paso 2: Subir a GitHub
+
+#### Opción A: Si NO tienes Git inicializado
+```powershell
+# Inicializar repositorio
+git init
+
+# Agregar todos los archivos
+git add .
+
+# Hacer commit
+git commit -m "Portfolio completo con SEO optimizado"
+
+# Crear repositorio en GitHub:
+# 1. Ve a https://github.com/new
+# 2. Nombre: my-portfolio
+# 3. NO marques "Initialize with README"
+# 4. Click "Create repository"
+
+# Conectar y subir (reemplaza TU_USUARIO)
+git remote add origin https://github.com/TU_USUARIO/my-portfolio.git
+git branch -M main
+git push -u origin main
+```
+
+#### Opción B: Si YA tienes Git
+```powershell
+git add .
+git commit -m "Agregada página de contacto y actualizado SEO"
+git push
+```
+
+---
+
+### Paso 3: Desplegar en Vercel
+
+1. **Ve a Vercel**: https://vercel.com
+2. **Regístrate o Inicia Sesión**:
+   - Usa tu cuenta de GitHub (recomendado)
+3. **Importar Proyecto**:
+   - Click en "Add New..." → "Project"
+   - Selecciona tu repositorio `my-portfolio`
+   - Click "Import"
+4. **Configuración** (automática para Next.js):
+   - Framework Preset: **Next.js** (detectado)
+   - Root Directory: `./`
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+   - Node Version: `20.x` (recomendado)
+5. **Deploy**:
+   - Click "Deploy"
+   - Espera 2-3 minutos
+
+---
+
+### Paso 4: Obtener Dominio Gratuito
+
+#### Opción A: Dominio de Vercel (Inmediato)
+Tu app estará en: `https://my-portfolio-tuusuario.vercel.app`
+
+**Personalizar subdominio:**
+1. En tu proyecto en Vercel → "Settings"
+2. "Domains" → Edita el dominio `.vercel.app`
+3. Cambia a algo como: `alcides-portfolio.vercel.app`
+
+#### Opción B: Dominio Gratuito .me (Estudiantes)
+1. **GitHub Student Developer Pack**:
+   - Ve a: https://education.github.com/pack
+   - Solicita el pack (con email Tecsup)
+   - Incluye dominio .me GRATIS por 1 año
+
+2. **Una vez aprobado**:
+   - Accede a Namecheap desde el pack
+   - Registra tu dominio (ej: `alcides-portfolio.me`)
+
+3. **Conectar a Vercel**:
+   - En Vercel → "Settings" → "Domains"
+   - Click "Add Domain"
+   - Ingresa tu dominio: `alcides-portfolio.me`
+   - Sigue las instrucciones para configurar DNS
+
+#### Opción C: Dominios Gratuitos Alternativos
+- **Freenom** (.tk, .ml, .ga): https://freenom.com
+- **dot.tk**: https://dot.tk
+- **InfinityFree** (con subdominio): https://infinityfree.net
+
+**Conectar dominio alternativo a Vercel:**
+1. En Vercel → "Settings" → "Domains" → "Add"
+2. Ingresa tu dominio
+3. Configura los DNS que Vercel te proporcione en tu proveedor
+
+---
+
+### Paso 5: Actualizar siteUrl en data.ts
+
+Una vez desplegado, actualiza tu URL:
+
+```typescript
+// src/lib/data.ts
+export const personalInfo = {
+  // ...
+  siteUrl: 'https://tu-dominio.vercel.app', // o tu dominio personalizado
+  // ...
+};
+```
+
+Luego:
+```powershell
+git add .
+git commit -m "Actualizada siteUrl con dominio de producción"
+git push
+```
+
+Vercel se redesplegará automáticamente.
+
+---
+
+## 📋 Checklist Final
+
+- [ ] Build exitoso localmente (`npm run build`)
+- [ ] Código en GitHub
+- [ ] Desplegado en Vercel
+- [ ] Dominio asignado (vercel.app o personalizado)
+- [ ] siteUrl actualizado en `data.ts`
+- [ ] Probado en navegador
+- [ ] Lighthouse Audit > 90 en todas las categorías
+
+---
+
+## 🔗 URLs de Verificación
+
+Después del despliegue, verifica:
+- `/` - Página principal
+- `/about` - Sobre mí
+- `/projects` - Lista de proyectos
+- `/projects/[slug]` - Detalle de proyecto
+- `/contact` - Página de contacto
+- `/sitemap.xml` - Sitemap
+- `/robots.txt` - Robots
+
+---
+
+## 📧 Información del Estudiante
+
+**Nombre:** Alcides Jesus Ruiz Hanco  
+**Ciclo:** 5to Ciclo  
+**Carrera:** Diseño y Desarrollo de Software  
+**Institución:** Tecsup
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Framework:** Next.js 16 (App Router)
+- **Lenguaje:** TypeScript
+- **Estilos:** Tailwind CSS
+- **Optimización:** next/image, next/font
+- **SEO:** Metadata API, OpenGraph, Twitter Cards
+- **Deployment:** Vercel
+
+---
+
+## 📚 Recursos Adicionales
+
+- [Documentación de Vercel](https://vercel.com/docs)
+- [Next.js Deployment](https://nextjs.org/docs/deployment)
+- [GitHub Student Pack](https://education.github.com/pack)
+- [Custom Domains en Vercel](https://vercel.com/docs/concepts/projects/custom-domains)
+
+---
+
+¡Buena suerte con tu despliegue! 🚀
