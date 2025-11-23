@@ -39,6 +39,6 @@ export const personalInfo = {
   email: 'tu@email.com',
   github: 'https://github.com/tuusuario',
   linkedin: 'https://linkedin.com/in/tuusuario',
-  siteUrl: 'https://tuportafolio.com',
+  siteUrl: 'https://alcides-arevalo.vercel.app/',
   avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
 };
